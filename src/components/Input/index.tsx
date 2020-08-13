@@ -3,7 +3,7 @@ import React, { InputHTMLAttributes } from 'react';
 import './styles.css';
 
 interface InputHeader extends InputHTMLAttributes<HTMLInputElement> {
-    label: string; 
+    label?: string; 
     name: string;
 }
 

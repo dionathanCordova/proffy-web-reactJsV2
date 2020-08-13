@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import logoImg from '../../assets/images/logo.svg';
 import landingImg from '../../assets/images/landing.svg';
@@ -9,16 +9,24 @@ import publeHeartIcon from '../../assets/images/icons/purple-heart.svg';
 import api from '../../service/api';
 
 import './styles.css';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
+import AuthContext from '../../contexts';
 
 function Landing() {
     const [ totalConnections, setTotalConnections ] = useState(0);
+    const {signed} = useContext(AuthContext);
+    const history = useHistory();
 
     useEffect(() => {
+        // if(!signed) {
+        //     history.push('/')
+        // }
+
         const total = api.get('/connection').then(response => {
             setTotalConnections(response.data.total);
         });
-    }, []);
+    }, [history, signed]);
 
     return (
         <div id="page-landing">
