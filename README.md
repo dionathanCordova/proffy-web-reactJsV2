@@ -1,6 +1,6 @@
 # proffy-web-reactJsV2
 
-![](./images/drawing.png)
+![](./images/Home.png)
 
 <h3 align="center">  Proffy - Plataforma de ensino online </h3>
 
