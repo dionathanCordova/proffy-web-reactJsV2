@@ -4,21 +4,23 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import Landing from '../pages/Landing';
 import TeacherList from '../pages/TeacherList';
 import TeacherForm from '../pages/TeacherForm';
-import ContextExample from '../pages/ContextExample';
+import Login from '../pages/Login';
 import SignIn from '../pages/SignIn';
 import Signed from '../pages/Signed';
+import ForgotPass from '../pages/ForgotPass';
 
 import { AuthProvider } from '../contexts';
 
 const Routes: React.FC = () => (
     <BrowserRouter>
         <AuthProvider>
-            <Route path='/' exact component={Landing} />
+            <Route path='/' exact component={Login} />
+            <Route path='/landing' component={Landing} />
             <Route path='/study' exact component={TeacherList} />
             <Route path='/sign-in' component={SignIn} />
             <Route path='/signed' component={Signed} />
-            <Route path='/context' exact component={ContextExample} />
             <Route path='/give-classes' exact component={TeacherForm} />
+            <Route path='/forgot-password' component={ForgotPass} />
         </AuthProvider>
     </BrowserRouter>
 )

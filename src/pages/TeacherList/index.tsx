@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useEffect } from 'react';
+import React, { useState, FormEvent, useEffect, useContext } from 'react';
 
 import PageHeader from '../../components/PageHeader';
 import TeacherItem, { Teacher }   from '../../components/TeacherItem';
@@ -7,13 +7,25 @@ import './styles.css';
 import Input from '../../components/Input';
 import Select from '../../components/SelectInput';
 import api from '../../service/api';
+import { useHistory } from 'react-router-dom';
+import AuthContext from '../../contexts';
 
 function TeacherList() {
+    const history = useHistory();
+
+    const { signed } = useContext(AuthContext);
     const [ subject, setSubject ] = useState('');
     const [ week_day, setWeekDay ] = useState('');
     const [ time, setTime ] = useState('');
     const [ teachers, setTeachers ] = useState([]);
 
+    useEffect(() => {
+        if(!signed) {
+            history.push('/')
+        }
+
+    }, [history, signed]);
+    
     function searchTeachers(e: FormEvent) {
         e.preventDefault();
 

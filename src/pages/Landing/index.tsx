@@ -15,13 +15,15 @@ import AuthContext from '../../contexts';
 
 function Landing() {
     const [ totalConnections, setTotalConnections ] = useState(0);
-    const {signed} = useContext(AuthContext);
+    const { signed } = useContext(AuthContext);
     const history = useHistory();
 
     useEffect(() => {
-        // if(!signed) {
-        //     history.push('/')
-        // }
+        const storageToken = localStorage.getItem('@AuthProffy:token');
+
+        if(!signed && !storageToken) {
+            history.push('/')
+        }
 
         const total = api.get('/connection').then(response => {
             setTotalConnections(response.data.total);

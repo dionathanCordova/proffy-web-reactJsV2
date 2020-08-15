@@ -58,15 +58,11 @@ export const AnimationContainer = styled.div`
 		
 		h1{
 			margin-bottom: 24px;
-			font-size: 2rem;
 			color: #32264D
 		}
-
-		svg {
-            color: #9C98A6;
-        }
 	}
 `
+
 export const Button = styled.button`
 	margin-top: 0.5rem;
 	width: 100%;
@@ -79,7 +75,7 @@ export const Button = styled.button`
 	transiction: background-color 0.2s;
 
 	&:hover{
-		background: var(--color-secundary-dark):
+		background: var(--cLogarolor-secundary-dark):
 		color:  var(--color-secundary-dark):
 	}
 `
@@ -123,22 +119,30 @@ export const PassInfo = styled.div`
 		}
 	}
 
-	.container:hover input ~ .checkmark {
-		background-color: #FFF;
+
+	a {
+		margin-left: auto;
+		padding-top: 0.8rem;
+		font-size: 1.2rem;
+		color: var(--color-text-complement);
+		text-decoration: none;
+		transition: -webkit-filter .2s;
+		transition: filter .2s;
+		transition: filter .2s,-webkit-filter .2s;
 	}
 
 	.container input:checked ~ .checkmark {
 		background: var(--color-secundary);
+	}
+
+	.container input:checked ~ .checkmark:after {
+		display: block;
 	}
 	  
 	.checkmark:after {
 		content: "";
 		position: absolute;
 		display: none;
-	}
-	  
-	.container input:checked ~ .checkmark:after {
-		display: block;
 	}
 	  
 	.container .checkmark:after {
@@ -153,23 +157,16 @@ export const PassInfo = styled.div`
 		transform: rotate(45deg);
 	}
 
-	a {
-		margin-left: auto;
-		padding-top: 0.8rem;
-		font-size: 1.2rem;
-		color: var(--color-text-complement);
-		text-decoration: none;
-		transition: -webkit-filter .2s;
-		transition: filter .2s;
-		transition: filter .2s,-webkit-filter .2s;
-	}
 `
 
 export const FooterInfo = styled.div`
 	display: flex;
 	width: 100%;
 	justify-content: space-between;
-
+	
+	.container:hover input ~ .checkmark {
+		background-color: #FFF;
+	}
 	p {
 		margin-top: 5rem;
 		font-size: 1.6rem;
@@ -193,3 +190,9 @@ export const Background = styled.div`
 	background: url(${SignInBackgroundImg}) no-repeat center;
 	background-size: cover;
 `
+
+
+	
+// .container:hover input ~ .checkmark {
+// 	background-color: #FFF;
+// }

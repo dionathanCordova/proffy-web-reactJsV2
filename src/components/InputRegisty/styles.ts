@@ -10,16 +10,12 @@ export const Container = styled.div`
     border: 1px solid var(--color-line-in-white);
     color: #666360;
 
-    & + div {
-        margin-top: 2px;
-    }
-
     svg{
-        margin-top: 1.7rem
+        margin-top: 1.7rem;
+        cursor: pointer;
     }
 
     input {
-
         flex: 1;
         width: 100%;
         height: 5rem;
@@ -31,15 +27,23 @@ export const Container = styled.div`
         outline: none;
         position:relative;
         
+        ::placeholder{
+            opacity: 0;
+        }
+
+        &:not(:placeholder-shown) + label {
+            transform: translate(0, 0.9rem);
+            font-size: 1.2rem;
+        }
 
         &:focus {
-            outline: 0;
             border-left: 3px solid var(--color-primary); 
         }
 
         &:focus + label,
         &:valid + label{
             transform: translateY(-5%);
+            font-size: 1.2rem;
         }
 
         &:hover + label{

@@ -47,6 +47,7 @@ const SignIn: React.FC = () => {
                             name="name"
                             type="text"
                             value={name}
+                            containerStyle={{borderRadius: '0.8rem 0.8rem 0 0'}}
                             onChange={(e) => { setName(e.target.value) }}
                         />
 
@@ -72,6 +73,7 @@ const SignIn: React.FC = () => {
                             name="password"
                             type="password"
                             value={password}
+                            containerStyle={{borderRadius: '0 0 0.8rem 0.8rem'}}
                             onChange={(e) => { setPassword(e.target.value) }}
                         />
 

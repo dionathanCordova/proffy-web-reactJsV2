@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import PageHeader from '../../components/PageHeader';
@@ -10,9 +10,12 @@ import warningIcon from '../../assets/images/icons/warning.svg';
 
 import './styles.css';
 import api from '../../service/api';
+import AuthContext from '../../contexts';
 
 function TeacherForm() {
     const history = useHistory();
+
+    const { signed } = useContext(AuthContext);
 
     const [ name, setName ] = useState('');
     const [ avatar, setAvatar ] = useState('');
@@ -24,6 +27,13 @@ function TeacherForm() {
     const [ scheduleItems, setScheduleItems ] = useState( [
         {week_day: 0, from: '', to: ''},
     ]);
+
+    useEffect(() => {
+        if(!signed) {
+            history.push('/')
+        }
+
+    }, [history, signed]);
 
     function addNewSchedule() {
         console.log(scheduleItems);

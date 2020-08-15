@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+
+import AuthContext from '../../contexts';
 
 import {
     Container,
     Content,
-    Button,
 } from './styles';
 
-import { Link } from 'react-router-dom';
-
 const Signed: React.FC = () => {
+    const { signed } = useContext(AuthContext);
+    const history = useHistory();
 
-    function handleSubmit() {
+    useEffect(() => {
 
-    }
+        alert(signed)
+        // if(!signed) {
+        //     history.push('/')
+        // }
+
+    }, [history, signed]);
 
     return (
         <Container>
