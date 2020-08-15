@@ -36,6 +36,9 @@ const Login: React.FC = () => {
     }
 
     useEffect(() => {
+        if(remember) {
+            history.push('/landing');
+        }
         // if(user) {
         //     const { email } = user;
         //     if(email && remember && rememberPassword) {
