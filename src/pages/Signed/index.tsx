@@ -12,15 +12,6 @@ const Signed: React.FC = () => {
     const { signed } = useContext(AuthContext);
     const history = useHistory();
 
-    useEffect(() => {
-
-        alert(signed)
-        // if(!signed) {
-        //     history.push('/')
-        // }
-
-    }, [history, signed]);
-
     return (
         <Container>
             <Content>

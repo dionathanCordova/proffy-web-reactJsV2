@@ -66,13 +66,13 @@ export const AuthProvider: React.FC = ({ children }) => {
             localStorage.setItem("@AuthProffy:user", JSON.stringify(user));
             localStorage.setItem("@AuthProffy:token", token);
 
-            if(rememberMe) {
-                localStorage.setItem("@AuthProffy:remember", 'true');
-                localStorage.setItem("@AuthProffy:password", JSON.stringify(password));
-            }else{
-                localStorage.setItem("@AuthProffy:remember", 'false');
-                localStorage.setItem("@AuthProffy:password", '');
-            }
+            // if(rememberMe) {
+            //     localStorage.setItem("@AuthProffy:remember", 'true');
+            //     localStorage.setItem("@AuthProffy:password", JSON.stringify(password));
+            // }else{
+            //     localStorage.setItem("@AuthProffy:remember", 'false');
+            //     localStorage.setItem("@AuthProffy:password", '');
+            // }
             
             setUser(user);
             setSigned(true);

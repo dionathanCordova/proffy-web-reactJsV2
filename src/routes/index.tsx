@@ -5,7 +5,7 @@ import Landing from '../pages/Landing';
 import TeacherList from '../pages/TeacherList';
 import TeacherForm from '../pages/TeacherForm';
 import Login from '../pages/Login';
-import SignIn from '../pages/SignIn';
+import SignUp from '../pages/SignUp';
 import Signed from '../pages/Signed';
 import ForgotPass from '../pages/ForgotPass';
 
@@ -17,7 +17,7 @@ const Routes: React.FC = () => (
             <Route path='/' exact component={Login} />
             <Route path='/landing' component={Landing} />
             <Route path='/study' exact component={TeacherList} />
-            <Route path='/sign-in' component={SignIn} />
+            <Route path='/sign-up' component={SignUp} />
             <Route path='/signed' component={Signed} />
             <Route path='/give-classes' exact component={TeacherForm} />
             <Route path='/forgot-password' component={ForgotPass} />

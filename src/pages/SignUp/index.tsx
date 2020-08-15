@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react';
 import Input from '../../components/InputRegisty';
 import { FiEye } from 'react-icons/fi';
 
@@ -13,17 +13,35 @@ import {
     BackgroundMini
 } from './styles';
 import { Link, useHistory } from 'react-router-dom';
+import api from '../../service/api';
 
-const SignIn: React.FC = () => {
+const SignUp: React.FC = () => {
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirm_password, setConfirmPassword] = useState('');
+    const [error, setError] = useState('');
 
     const history = useHistory();
 
-    function handleSubmit() {
-        history.push('signed')
+    async function handleSubmit(e: FormEvent) {
+        e.preventDefault();
+
+        if(password === confirm_password) {
+            const user = await api.post('/users', {
+                name,
+                surname,
+                email,
+                password,
+                confirm_password
+            });
+    
+            console.log(user);
+            history.push('signed')
+        }else{
+            setError('Dados incorretos')
+        }
     }
 
     return (
@@ -73,10 +91,20 @@ const SignIn: React.FC = () => {
                             name="password"
                             type="password"
                             value={password}
-                            containerStyle={{borderRadius: '0 0 0.8rem 0.8rem'}}
                             onChange={(e) => { setPassword(e.target.value) }}
                         />
 
+                        <Input
+                            label='Confirme a Senha'
+                            icon={FiEye}
+                            name="confirm_password"
+                            type="password"
+                            value={confirm_password}
+                            containerStyle={{borderRadius: '0 0 0.8rem 0.8rem'}}
+                            onChange={(e) => { setConfirmPassword(e.target.value) }}
+                        />
+
+                        {error !== '' ? error : ''}
                         <Button type="submit">Logar</Button>
                     </form>
 
@@ -88,4 +116,4 @@ const SignIn: React.FC = () => {
     )
 }
 
-export default SignIn
+export default SignUp;

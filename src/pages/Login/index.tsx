@@ -36,11 +36,16 @@ const Login: React.FC = () => {
     }
 
     useEffect(() => {
-        signIn(userEmail, userPassword, rememberMe);
-
-        if(!signed) {
-            history.push('/');
-        }
+        // if(user) {
+        //     const { email } = user;
+        //     if(email && remember && rememberPassword) {
+        //         console.log('tes');
+        //         setEmail(user.email);
+        //         setPassword(rememberPassword.replace(/\"/g, ''));
+        //         setRememberMe(true);
+        //         setDisabled(false);
+        //     }
+        // }
 
         if(userEmail && userPassword) {
             setDisabled(false);
@@ -48,22 +53,14 @@ const Login: React.FC = () => {
             setDisabled(true);
         }
 
-        if(user) {
-            const { email } = user;
-            if(email && remember && rememberPassword) {
-                console.log('tes');
-                setEmail(user.email);
-                setPassword(rememberPassword.replace(/\"/g, ''));
-                setRememberMe(true);
-                setDisabled(false);
-            }
-        }
-      
-    }, [disabled, signed, user, remember, rememberPassword, userEmail, userPassword]);
+        signIn(userEmail, userPassword, rememberMe);
+
+    }, [userEmail, userPassword]);
+
 
     function handleSubmit(e: FormEvent) {
         e.preventDefault();
-       
+
         if(signed) {
             history.push('landing');
         }else{
@@ -114,14 +111,14 @@ const Login: React.FC = () => {
                             <Link to="forgot-password">Esqueci minha senha</Link>
                         </PassInfo>
                        
-                        <Button disabled={disabled} type="submit">Entrar { disabled ? 'dis' : ''}</Button>
+                        <Button disabled={disabled} type="submit">Entrar</Button>
 
                     </form>
 
                     <FooterInfo>
                         <p> 
                             Não tem conta? <br/>
-                            <Link to="/sign-in">Cadastre-se </Link>
+                            <Link to="/sign-up">Cadastre-se </Link>
                         </p>
 
                         <p>
