@@ -87,7 +87,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
 
     async function signOut() {
-        localStorage.clear();
+        // localStorage.clear();
+        localStorage.removeItem("@AuthProffy:user");
+        localStorage.removeItem("@AuthProffy:token");
+
         setUser({} as UserProps);
     }
 
