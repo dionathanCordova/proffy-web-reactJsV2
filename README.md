@@ -66,8 +66,9 @@ Nem sempre um usuário vai se lembrar da sua senha para logar na aplicação, pr
 
 ## :pushpin: Todo
 
-<!-- - [x] This is a complete item -->
-<!-- - [ ] This is an incomplete item -->
+- [x] Authenticação de usuário
+- [x] Recuperação de senha
+- [ ] Página de profile
 
 ## :rocket: Technologies ##
 
