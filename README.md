@@ -52,7 +52,7 @@ An new version of a plataform do give end study classes online, the first versio
 
 :heavy_check_mark: Authenticação de usuário 1;\
 :heavy_check_mark: Recuperação de senha 2;\
-:heavy_check_mark: Envio de email;
+:heavy_check_mark: Envio de email;\
 : Página de profile;
 
 <!-- - [x] This is a complete item -->
