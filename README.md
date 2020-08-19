@@ -102,11 +102,43 @@ de dados para exibi-las nos campos.
 
 ```
 
+:x: Paginação na listagem de proffys
+
+O usuário logado na aplicação pode visualizar todos os professores disponíveis na plataforma, mas exibir todos os professores de uma só vez pode ser bastante prejudicial para a performance da sua aplicação.
+
+Para resolver esse problema, implemente uma paginação na listagem de professores disponíveis. Essa paginação deve ser feita ao buscar os itens da sua api, e você pode mandar uma informação pelo corpo da requisição, como por exemplo `"page": 1"` para que você saiba quais itens retornar do banco de dados.
+
+:x: Exibindo horários disponíveis dos proffys
+
+Na sua listagem de proffys, se você olhar no layout, perceberá que é exibido todos os horários disponíveis dos professores logo abaixo da bio dele. Seu trabalho é implementar essa funcionalidade.
+
+Para isso, você apenas precisa trazer junto aos dados do proffy as informações de seus dias disponíveis fazendo um join com a tabela `class_schedule` para retornar esses dados junto com a listagem.
+
+:x: Salvando seus proffys favoritos
+
+Agora, você deve salvar seus proffys favoritos no banco de dados! Para isso, você pode criar uma tabela `favorites` que irá salvar o id do seu usuário logado e o id do seu proffy favorito.
+
+Assim, toda vez que você entrar na página de proffys favoritos, você irá ter atualizado os seus proffys que você mais adora!
+
+:x: Logout da aplicação
+
+Como última funcionalidade, mas não menos importante, você deve implementar uma função de logout na aplicação, para que o usuário possa trocar de conta caso ele deseje.
+
+:x: Deploy da aplicação
+
+Agora é a hora de se desafiar a publicar a sua aplicação na WEB para todo mundo poder acessar! Nós criamos um guia **exclusivo** para essa edição da NLW ensinando do zero o processo de deploy da nossa aplicação, e o melhor, você ainda ainda vai aprender a configurar o PostgreSQL na sua aplicação!
+
 ## :pushpin: Todo
 
 - [x] Authenticação de usuário
 - [x] Recuperação de senha
 - [ ] Página de profile
+- [ ] Splash Screen no React Native com Expo
+- [ ] Paginação na listagem de proffys
+- [ ] Exibindo horários disponíveis dos proffys
+- [ ] Salvando seus proffys favoritos
+- [x] Logout da aplicação
+- [ ] Deploy da aplicação
 
 ## :rocket: Technologies ##
 
