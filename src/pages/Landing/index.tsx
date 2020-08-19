@@ -7,6 +7,8 @@ import giveClassesIcon from '../../assets/images/icons/give-classes.svg';
 import publeHeartIcon from '../../assets/images/icons/purple-heart.svg';
 import powerof from '../../assets/images/Sair.png';
 
+import emptyAvatar from '../../assets/images/emptyAvatar.jpg';
+
 import api from '../../service/api';
 
 import {
@@ -23,7 +25,11 @@ import AuthContext from '../../contexts';
 
 function Landing() {
     const [ totalConnections, setTotalConnections ] = useState(0);
-    const { signed, signOut } = useContext(AuthContext);
+    const { signed, signOut, user } = useContext(AuthContext);
+
+    const [ userName, setUsername ] = useState('');
+    const [ userAvatar, setUserAvatar ] = useState('');
+    
     const history = useHistory();
 
     useEffect(() => {
@@ -37,11 +43,11 @@ function Landing() {
             setTotalConnections(response.data.total);
         });
 
-    }, [history, signed]);
+        setUsername(user.name);
+        setUserAvatar(user.avatar !== null ? user.avatar : emptyAvatar);
 
-    // function getOut() {
-      
-    // }
+        console.log(user);
+    }, [history, signed, user, userName]);
 
     const getOut = useCallback(() => {
         history.push('/');
@@ -56,8 +62,8 @@ function Landing() {
                     <div className="first-box">
                                         
                         <UserInfo>
-                            <img  id="powerOf" src='https://avatars0.githubusercontent.com/u/17915601?s=60&v=4' alt="proffy"/>
-                            <p>Dionathan de Córdova</p>
+                            <img  id="powerOf" src={userAvatar} alt="proffy"/>
+                            <p>{userName}</p>
                         </UserInfo>
 
                         <button onClick={getOut} className="signout">
