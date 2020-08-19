@@ -51,9 +51,11 @@ An new version of a plataform do give end study classes online, the first versio
 ## :pushpin: Todo ##
 
 :heavy_check_mark: Authenticação de usuário\
+A primeira nova funcionalidade da sua aplicação será a autenticação de usuários nas aplicações Web e Mobile. Para isso, nós primeiramente devemos criar, no nosso servidor, a funcionalidade para o usuário se cadastrar, inserindo seu e-mail e senha.
+
 :heavy_check_mark: Recuperação de senha\
 :heavy_check_mark: Envio de email\
-:x: Página de profile;
+:x: Página de profile
 
 <!-- - [x] This is a complete item -->
 <!-- - [ ] This is an incomplete item -->
