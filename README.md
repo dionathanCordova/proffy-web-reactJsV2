@@ -1,7 +1,7 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Web" />
+![](./images/Home.png)
 
-  &#xa0;
+&#xa0;
 
   <!-- <a href="https://web.netlify.app">Demo</a> -->
 </div>
