@@ -73,8 +73,10 @@ Para isso, no seu backend implemente uma rota para alteração do perfil. Ele de
 - Alterar sua biografia
 - Alterar seu valor por hora de aula
 
+:bulb:
 ```
-:bulb: **Dica:** No perfil do usuário irá sempre aparecer os dados que ele cadastrou na página "Dar aulas", então sempre ao entrar no seu perfil, busque essas informações do banco de dados para exibi-las nos campos.
+Dica: No perfil do usuário irá sempre aparecer os dados que ele cadastrou na página "Dar aulas",\
+então sempre ao entrar no seu perfil, busque essas informações do banco de dados para exibi-las nos campos.
 ```
 
 ## :pushpin: Todo
