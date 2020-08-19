@@ -144,11 +144,13 @@ Agora é a hora de se desafiar a publicar a sua aplicação na WEB para todo mun
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
+<!-- - [Expo](https://expo.io/) -->
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
 - [React Native](https://reactnative.dev/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Sqlite](https://www.sqlite.org/index.html)
+- [knex](https://devhints.io/knex)
 
 ## :white_check_mark: Requirements ##
 
