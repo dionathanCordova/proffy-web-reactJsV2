@@ -3,31 +3,31 @@
 
 &#xa0;
 
-  <!-- <a href="https://web.netlify.app">Demo</a> -->
+  <!-- <a href="https://proffy-web-reactJsV2.netlify.app">Demo</a> -->
 </div>
 
 <h1 align="center">Web</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/dionathanCordova/web?color=56BEB8">
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/dionathanCordova/proffy-web-reactJsV2?color=56BEB8">
 
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/dionathanCordova/web?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/dionathanCordova/proffy-web-reactJsV2?color=56BEB8">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/dionathanCordova/web?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/dionathanCordova/proffy-web-reactJsV2?color=56BEB8">
 
-  <img alt="License" src="https://img.shields.io/github/license/dionathanCordova/web?color=56BEB8">
+  <img alt="License" src="https://img.shields.io/github/license/dionathanCordova/proffy-web-reactJsV2?color=56BEB8">
 
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/dionathanCordova/web?color=56BEB8" /> -->
+  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/dionathanCordova/proffy-web-reactJsV2?color=56BEB8" /> -->
 
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/dionathanCordova/web?color=56BEB8" /> -->
+  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/dionathanCordova/proffy-web-reactJsV2?color=56BEB8" /> -->
 
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/dionathanCordova/web?color=56BEB8" /> -->
+  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/dionathanCordova/proffy-web-reactJsV2?color=56BEB8" /> -->
 </p>
 
 <!-- Status -->
 
 <!-- <h4 align="center"> 
-	🚧  Web 🚀 Under construction...  🚧
+	🚧  proffy-web-reactJsV2 🚀 Under construction...  🚧
 </h4> 
 
 <hr> -->
@@ -72,10 +72,10 @@ Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) an
 
 ```bash
 # Clone this project
-$ git clone https://github.com/dionathanCordova/web
+$ git clone https://github.com/dionathanCordova/proffy-web-reactJsV2
 
 # Access
-$ cd web
+$ cd proffy-web-reactJsV2
 
 # Install dependencies
 $ yarn
