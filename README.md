@@ -6,7 +6,7 @@
   <!-- <a href="https://proffy-web-reactJsV2.netlify.app">Demo</a> -->
 </div>
 
-<h1 align="center">Web</h1>
+<h1 align="center">proffy web reactJs V2</h1>
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/dionathanCordova/proffy-web-reactJsV2?color=56BEB8">
