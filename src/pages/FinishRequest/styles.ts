@@ -1,6 +1,6 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
-import drawing from '../../assets/images/drawing.svg';
+import finishRequest from '../../assets/images/finishRequest.svg';
 
 export const Container = styled.div`
     height: 100vh;
@@ -12,9 +12,8 @@ export const Container = styled.div`
         align-items: center;
     }
 
-    background: url(${drawing}) no-repeat center;
+    background: url(${finishRequest}) no-repeat center;
 	background-size: cover;
-
 `
 export const Content = styled.div`
     display: flex;
@@ -24,9 +23,18 @@ export const Content = styled.div`
     flex-direction: column;
 
     width: 100%;
+
+    h3 {
+        color: #FFFFFF;
+        font-family: Archivo;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 54px;
+        margin-top: 15rem;
+    }
     
     p{
-        margin-top: 30rem;
+        margin-top: 2rem;
         color:  var(--color-title-in-primary);
         text-align: center;
     }

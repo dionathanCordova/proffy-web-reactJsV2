@@ -39,16 +39,6 @@ const Login: React.FC = () => {
         if(remember) {
             history.push('/landing');
         }
-        // if(user) {
-        //     const { email } = user;
-        //     if(email && remember && rememberPassword) {
-        //         console.log('tes');
-        //         setEmail(user.email);
-        //         setPassword(rememberPassword.replace(/\"/g, ''));
-        //         setRememberMe(true);
-        //         setDisabled(false);
-        //     }
-        // }
 
         if(userEmail && userPassword) {
             setDisabled(false);
@@ -56,20 +46,23 @@ const Login: React.FC = () => {
             setDisabled(true);
         }
 
-        signIn(userEmail, userPassword, rememberMe);
-
     }, [userEmail, userPassword]);
 
-
-    function handleSubmit(e: FormEvent) {
+    const handleSubmid = useCallback((e: FormEvent) => {
         e.preventDefault();
-
-        if(signed) {
-            history.push('landing');
-        }else{
+    
+        signIn(userEmail, userPassword, rememberMe).then(response => {
+            if(response.status) {
+                history.push('landing');
+            }else{
+                alert('Credenciais incorretas');
+            }
+        }).catch(err => {
             alert('Credenciais incorretas');
-        }
-    }
+        });
+
+    }, [userEmail, userPassword])
+
 
     function handleTogglePass() {
         setTogglePass(!togglePass);
@@ -82,7 +75,7 @@ const Login: React.FC = () => {
 			
             <Content>
                 <AnimationContainer>
-                    <form action="" onSubmit={handleSubmit}>
+                    <form action="" onSubmit={handleSubmid}>
                         <h1>Fazer login</h1>
 
                         <Input 

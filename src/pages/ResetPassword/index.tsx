@@ -1,8 +1,9 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, useEffect } from 'react';
 import Input from '../../components/InputRegisty';
 import { FiEye } from 'react-icons/fi';
 
 import backIcon from '../../assets/images/icons/back.svg';
+import api from '../../service/api';
 
 import {
     Container,
@@ -12,34 +13,62 @@ import {
     BackgroundFull,
     BackgroundMini
 } from './styles';
-import { Link, useHistory } from 'react-router-dom';
-import api from '../../service/api';
 
-const SignUp: React.FC = () => {
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
-    const [email, setEmail] = useState('');
+import { Link, useHistory,  RouteComponentProps, withRouter, Redirect } from 'react-router-dom';
+import * as H from "history";
+
+type TokenParams = {
+    params: {
+        token: string;
+    };
+};
+
+interface RouteProps {
+    match: TokenParams;
+    location: H.Location;
+    history: H.History;
+    staticContext?: any;
+}
+
+const ResetPassword: React.FC<RouteProps> = ({match}: RouteProps) => {
+    const [token, setToken] = useState('');
     const [password, setPassword] = useState('');
     const [confirm_password, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
     const history = useHistory();
 
+    useEffect(() => {
+        const token = match.params.token; 
+        setToken(token);
+    }, [match]);
+
     async function handleSubmit(e: FormEvent) {
         e.preventDefault();
 
         if(password === confirm_password) {
-            const user = await api.post('/users', {
-                name,
-                surname,
-                email,
-                password,
-                confirm_password
-            });
+            try {
+                const response = await api.post('reset_password', {
+                    token,
+                    password
+                });
     
-            history.push('/finish-request', { title: 'Cadastro concluído', content: `Agora você faz parte da plataforma da Proffy. Tenha uma ótima experiência.`});
+                console.log(response);
+    
+                if(response.data.status === 'ok') {
+                    console.log('ok');
+                    history.push('/finish-request', { title: 'Redefinição de senha!', content: 'Boa, agora é só logar novamente com sua nova senha. aproveitar os estudos.'});
+                }else{
+                    alert('Ocorreu err ');
+                }
+            } catch (error) {
+                alert('Ocorreu um erro ' + error);
+            }
+            
+
         }else{
-            setError('Dados incorretos')
+            alert('Dados incorretos');
+            setError('Dados incorretos');
         }
     }
 
@@ -56,33 +85,8 @@ const SignUp: React.FC = () => {
                     </Link>
 
                     <form action="" onSubmit={handleSubmit}>
-                        <h1>Cadastro</h1>
-                        <p>Preencha os dados abaixo para começar</p>
-
-                        <Input
-                            label='Nome'
-                            name="name"
-                            type="text"
-                            value={name}
-                            containerStyle={{borderRadius: '0.8rem 0.8rem 0 0'}}
-                            onChange={(e) => { setName(e.target.value) }}
-                        />
-
-                        <Input
-                            label='Sobrenome'
-                            name="surname"
-                            type="text"
-                            value={surname}
-                            onChange={(e) => { setSurname(e.target.value) }}
-                        />
-
-                        <Input
-                            label='E-mail'
-                            name="email"
-                            type="text"
-                            value={email}
-                            onChange={(e) => { setEmail(e.target.value) }}
-                        />
+                        <h1>Redefinição de senha</h1>
+                        <p>Preencha os dados abaixo</p>
 
                         <Input
                             label='Senha'
@@ -115,4 +119,4 @@ const SignUp: React.FC = () => {
     )
 }
 
-export default SignUp;
+export default ResetPassword;

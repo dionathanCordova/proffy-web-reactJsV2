@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useCallback } from 'react';
 
 import logoImg from '../../assets/images/logo.svg';
 import landingImg from '../../assets/images/landing.svg';
@@ -36,12 +36,17 @@ function Landing() {
         const total = api.get('/connection').then(response => {
             setTotalConnections(response.data.total);
         });
+
     }, [history, signed]);
 
-    function getOut () {
+    // function getOut() {
+      
+    // }
+
+    const getOut = useCallback(() => {
+        history.push('/');
         signOut();
-        history.push('/')
-    }
+    }, [history, signOut])
 
     return (
         <Container>
@@ -66,7 +71,7 @@ function Landing() {
                             <h2>Sua plataforma de estudos online.</h2>
                         </div>
 
-                        <img src={landingImg} alt="landing" className="hero-image"/>
+                        <img src={landingImg} alt="landing" className="proffy-image"/>
                     </div>
                 </HeaderContent>
             </Header>

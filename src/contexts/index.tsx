@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
 import api from "../service/api";
 import { AxiosResponse } from "axios";
 
@@ -9,6 +9,10 @@ interface UserProps {
     email: string;
     bio: string;
     whatsapp: string;
+}
+
+interface SignedResult {
+    status: boolean;
 }
 
 interface ResponseSignInUser {
@@ -26,7 +30,7 @@ interface AuthContextData {
         email: string,
         password: string,
         remember: boolean
-    ): Promise<AxiosResponse<ResponseSignInUser>>;
+    ): Promise<SignedResult>;
     signOut(): void;
     remember: boolean;
     rememberPassword: string | null;
@@ -38,7 +42,6 @@ export const AuthProvider: React.FC = ({ children }) => {
     const [user, setUser] = useState<UserProps>({} as UserProps);
     const [loading, setLoading] = useState(true);
     const [signed, setSigned] = useState(false);
-    const [pass, setPass] = useState('');
 
     const [data, setData] = useState(() => {
         const storegedUser = localStorage.getItem('@AuthProffy:user');
@@ -53,7 +56,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         return {} as ResponseSignInUser;
     })
 
-    async function signIn(email: string, password: string, rememberMe: boolean) {
+    async function signIn(email: string, password: string, rememberMe: boolean): Promise<SignedResult> {
         const response = await api.post<ResponseSignInUser>("authenticate", {
             email,
             password,
@@ -68,31 +71,34 @@ export const AuthProvider: React.FC = ({ children }) => {
 
             if(rememberMe) {
                 localStorage.setItem("@AuthProffy:remember", 'true');
-                // localStorage.setItem("@AuthProffy:password", JSON.stringify(password));
             }else{
                 localStorage.setItem("@AuthProffy:remember", 'false');
-                // localStorage.setItem("@AuthProffy:password", '');
             }
             
             setUser(user);
             setSigned(true);
             setData({user, token, rememberMe, rememberPassword: password})
+
+            return {status : true};
         }else{
             setSigned(false);
             setUser({} as UserProps);
             setData({} as ResponseSignInUser);
-        }
 
-        return response;
+            return {status: false};
+        }
     }
 
     async function signOut() {
         // localStorage.clear();
-        debugger;
         localStorage.removeItem("@AuthProffy:user");
         localStorage.removeItem("@AuthProffy:token");
 
         setUser({} as UserProps);
+        setSigned(false);
+        setData({} as ResponseSignInUser);
+
+        return {signed: false}
     }
 
     return (
