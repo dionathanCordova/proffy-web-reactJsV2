@@ -48,7 +48,7 @@
 
 An new version of a plataform do give end study classes online, the first version was made by equipe Rocketseat on NLW week, this is a event ho we can learn abaout ReactJs, ReactNative and NodeJs.
 
-## :tada: Expecificações ##
+## :tada: Features ##
 
 :heavy_check_mark: Authenticação de usuário\
 
