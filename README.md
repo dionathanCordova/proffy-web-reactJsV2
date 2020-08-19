@@ -54,9 +54,27 @@ An new version of a plataform do give end study classes online, the first versio
 
 A primeira nova funcionalidade da sua aplicação será a autenticação de usuários nas aplicações Web e Mobile. Para isso, nós primeiramente devemos criar, no nosso servidor, a funcionalidade para o usuário se cadastrar, inserindo seu e-mail e senha.
 
-Depois de permitir a criação de uma senha para todos os usuários cadastrados, você precisa de uma rota para o login do usuário. Essa rota deve validar a senha do usuário no banco de dados e uma boa estratégia para manter o usuário logado por um tempo determinado é utilizar tokens JWT.
+```
 
-O usuário deve poder logar em sua conta para acessar a aplicação para escolher se ele quer dar aulas, ou mesmo visualizar professores disponíveis, tanto no web quanto no mobile.
+Dica: Antes de salvar a senha do usuário no banco de dados, 
+lembre-se sempre de criptografar a senha para manter ela segura. 
+Para isso você pode utilizar bibliotecas como o bcrypt.
+
+```
+
+Depois de permitir a criação de uma senha para todos os usuários cadastrados, 
+você precisa de uma rota para o login do usuário. Essa rota deve validar a senha do usuário 
+no banco de dados e uma boa estratégia para manter o usuário logado por um tempo 
+determinado é utilizar tokens JWT.
+
+O usuário deve poder logar em sua conta para acessar a aplicação para escolher se ele quer dar aulas, 
+ou mesmo visualizar professores disponíveis, tanto no web quanto no mobile.
+
+```
+
+Dica: Para manter o usuário logado no mobile, caso ele clique na opção "Lembrar-me", você pode salvar o token JWT no LocalStorage do navegador (Web) ou AsyncStorage da sua aplicação mobile. Caso ele não selecione para se Lembrar, você pode apenas mantê-lo autenticado durante uma sessão (até fechar a aplicação).
+
+```
 
 :heavy_check_mark: Recuperação de senha\
 
