@@ -64,6 +64,19 @@ Nem sempre um usuário vai se lembrar da sua senha para logar na aplicação, pr
 
 :x: Página de profile
 
+Após a autenticação de um professor na aplicação WEB, você deve permitir que ele possa exibir o seu perfil e permitir também que ele edite algumas informações do seu cadastro. 
+
+Para isso, no seu backend implemente uma rota para alteração do perfil. Ele deve poder alterar as seguintes informações:
+
+- Alterar horário/dias de disponibilidade
+- Alterar o número de WhatsApp
+- Alterar sua biografia
+- Alterar seu valor por hora de aula
+
+```
+:bulb: **Dica:** No perfil do usuário irá sempre aparecer os dados que ele cadastrou na página "Dar aulas", então sempre ao entrar no seu perfil, busque essas informações do banco de dados para exibi-las nos campos.
+```
+
 ## :pushpin: Todo
 
 - [x] Authenticação de usuário
