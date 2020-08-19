@@ -72,7 +72,10 @@ ou mesmo visualizar professores disponíveis, tanto no web quanto no mobile.
 
 ```
 
-Dica: Para manter o usuário logado no mobile, caso ele clique na opção "Lembrar-me", você pode salvar o token JWT no LocalStorage do navegador (Web) ou AsyncStorage da sua aplicação mobile. Caso ele não selecione para se Lembrar, você pode apenas mantê-lo autenticado durante uma sessão (até fechar a aplicação).
+Dica: Para manter o usuário logado no mobile, caso ele clique na opção "Lembrar-me", 
+você pode salvar o token JWT no LocalStorage do navegador (Web) ou AsyncStorage da sua aplicação mobile. 
+Caso ele não selecione para se Lembrar, você pode apenas mantê-lo autenticado durante 
+uma sessão (até fechar a aplicação).
 
 ```
 
