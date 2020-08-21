@@ -47,7 +47,19 @@
 
 ## :dart: About ##
 
-An new version of a plataform do give end study classes online, the first version was made by equipe Rocketseat on NLW week, this is a event ho we can learn abaout ReactJs, ReactNative and NodeJs.
+An new version of a plataform do give end study classes online, the first version was made by Rocketseat team on NLW week, this is an event how we can learn abaut ReactJs, ReactNative and NodeJs.
+
+## :rocket: Technologies ##
+
+The following tools were used in this project:
+
+<!-- - [Expo](https://expo.io/) -->
+- [Node.js](https://nodejs.org/en/)
+- [React](https://pt-br.reactjs.org/)
+- [React Native](https://reactnative.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Sqlite](https://www.sqlite.org/index.html)
+- [knex](https://devhints.io/knex)
 
 ## :tada: Features ##
 
@@ -140,18 +152,6 @@ Agora é a hora de se desafiar a publicar a sua aplicação na WEB para todo mun
 - [ ] Salvando seus proffys favoritos
 - [x] Logout da aplicação
 - [ ] Deploy da aplicação
-
-## :rocket: Technologies ##
-
-The following tools were used in this project:
-
-<!-- - [Expo](https://expo.io/) -->
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Sqlite](https://www.sqlite.org/index.html)
-- [knex](https://devhints.io/knex)
 
 ## :white_check_mark: Requirements ##
 

@@ -25,8 +25,8 @@ export const Content = styled.div`
     display: flex;
     flex-direction: row;
     align-items:center;
-
     justify-content: center;
+
 	width: 100%;
     max-width: 50%;
     
@@ -38,13 +38,20 @@ export const Content = styled.div`
 
 
     @media(max-width: 800px) {
+        margin-top: -20rem;
 		width: 100%;
 		max-width: 100%;
 		margin-top: 4rem;
         margin-bottom: 4rem;
+        text-align: center;
 
         a{
             display:none;
+        }
+
+        p{
+            margin: auto;
+            text-align: center;
         }
 	}
 `
@@ -120,8 +127,10 @@ export const BackgroundMini = styled.div`
     background-size: cover;
     display: none;
 
-    @media(max-width: 800px) {
+    @media (max-width: 700px) {
+        margin-top: 12rem;
         display: inline;
-        height: 100rem;
+        min-height: 35rem;
+        background-size: 40rem;
 	}
 `

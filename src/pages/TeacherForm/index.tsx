@@ -7,15 +7,25 @@ import Textarea from '../../components/TextArea';
 import Select from '../../components/SelectInput';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
+import rocketIcon from '../../assets/images/icons/rocket.svg';
+import emptyAvatar from '../../assets/images/emptyAvatar.png';
 
-import './styles.css';
+import { 
+    PageTeacherForm,
+    Main,
+    Fieldset,
+    Footer,
+    CustomUpload,
+    GroupGrid
+} from './styles';
+
 import api from '../../service/api';
 import AuthContext from '../../contexts';
 
 function TeacherForm() {
     const history = useHistory();
 
-    const { signed } = useContext(AuthContext);
+    const { signed, user } = useContext(AuthContext);
 
     const [ name, setName ] = useState('');
     const [ avatar, setAvatar ] = useState('');
@@ -33,7 +43,12 @@ function TeacherForm() {
             history.push('/')
         }
 
-    }, [history, signed]);
+        setAvatar(user.avatar !==  null ? user.avatar : emptyAvatar);
+        setName(user.name);
+        // setAvatar('https://avatars3.githubusercontent.com/u/17915601?s=460&u=96ecb2b2408d0785ccdf6d1a364c60ef54b59ae5&v=4');
+        console.log(avatar);
+
+    }, [avatar, history, signed, user]);
 
     function addNewSchedule() {
         console.log(scheduleItems);
@@ -74,42 +89,41 @@ function TeacherForm() {
     }
 
     return (
-        <div id="page-teacher-form" className="container">
-            <PageHeader 
-                title="Que demais que você quer dar aulas!"
-                description="O primeiro passo, é preencher esse formulário de inscrição"
-            />
+        <PageTeacherForm>
+            <PageHeader route="Dar aula">
+                <h1>Que demais que você quer dar aulas!</h1>
+                <div className="group">
+                    <p>O primeiro passo, é preencher esse formulário de inscrição.</p><br/>
+
+                    <div id="welcomeMessage">
+                        <img src={rocketIcon} alt="rocket"/> 
+                        <p>Preparare-se! <br></br>vai ser o máximo.</p> 
+                    </div>
+                </div>
+            </PageHeader>
             
-            <main id="main">
+            <Main>
                 <form onSubmit={handleCreateClass}>
-                <fieldset>
+                <Fieldset>
                     <legend>Seus dados</legend>
                     
-                    <Input 
-                        label="Nome completo" 
-                        name="name" 
-                        type="text"
-                        value={name}
-                        onChange={(e) => {setName(e.target.value)}}
-                    />
+                    <GroupGrid>
+                        <CustomUpload image={avatar}>
+                            <label className="new-button" htmlFor="upload">
+                                <p>{name}</p>
+                            </label>
+                            <input id="upload" type="file" /> 
+                        </CustomUpload>
 
-                    <Input 
-                        label="Link da sua foto" 
-                        name="avatar" 
-                        placeholder="Começa com http://" 
-                        type="text"
-                        value={avatar}
-                        onChange={(e) => {setAvatar(e.target.value)}}
-                    />
-
-                    <Input 
-                        label="Whatsapp" 
-                        name="whatsapp" 
-                        placeholder="Somente números" 
-                        type="text"
-                        value={whatsapp}
-                        onChange={(e) => {setWhatsapp(e.target.value)}}
-                    />
+                        <Input 
+                            label="Whatsapp" 
+                            name="whatsapp" 
+                            placeholder="( ) _ ____ ____" 
+                            type="text"
+                            value={whatsapp}
+                            onChange={(e) => {setWhatsapp(e.target.value)}}
+                        />
+                    </GroupGrid>
 
                     <Textarea 
                         name="bio" 
@@ -118,37 +132,40 @@ function TeacherForm() {
                         onChange={(e) => {setBio(e.target.value)}}
                     />
 
-                </fieldset> 
+                </Fieldset> 
 
-                <fieldset>
+                <Fieldset>
                     <legend>Sobre a aula</legend>
-                    <Select 
-                        label="Matéria" 
-                        name="subject"
-                        value={subject}
-                        onChange={(e) => {setSubject(e.target.value)}}
-                        options={[
-                            {value: 'Artes', label: 'Artes'},
-                            {value: 'Biologia', label: 'Biologia'},
-                            {value: 'Matematica', label: 'Matematica'},
-                            {value: 'Física', label: 'Física'},
-                            {value: 'Química', label: 'Química'},
-                            {value: 'Estatística', label: 'Estatística'}
-                        ]}
-                    />
 
-                    <Input
-                        label="Custo da sua hora por aula" 
-                        name="cost" 
-                        placeholder="Valor em R$" 
-                        type="text"
-                        value={cost}
-                        onChange={(e) => {setCost(e.target.value)}}
-                    />
+                    <GroupGrid>
+                        <Select 
+                            label="Matéria" 
+                            name="subject"
+                            value={subject}
+                            onChange={(e) => {setSubject(e.target.value)}}
+                            options={[
+                                {value: 'Artes', label: 'Artes'},
+                                {value: 'Biologia', label: 'Biologia'},
+                                {value: 'Matematica', label: 'Matematica'},
+                                {value: 'Física', label: 'Física'},
+                                {value: 'Química', label: 'Química'},
+                                {value: 'Estatística', label: 'Estatística'}
+                            ]}
+                        />
 
-                </fieldset>
+                        <Input
+                            label="Custo da sua hora por aula" 
+                            name="cost" 
+                            placeholder="Valor em R$" 
+                            type="text"
+                            value={cost}
+                            onChange={(e) => {setCost(e.target.value)}}
+                        />
+                    </GroupGrid>
 
-                <fieldset>
+                </Fieldset>
+
+                <Fieldset>
                     <legend>
                         Horários disponíveis
                         <button type="button" id='add-horario' onClick={addNewSchedule}>+ Novo horário</button>
@@ -156,56 +173,63 @@ function TeacherForm() {
 
                     {scheduleItems.map((schedule, index) => (
                         <div className="schedule-item" key={index}>
-                            <Select 
-                                label="Dia da semana" 
-                                name="week_day"
-                                value={schedule.week_day}
-                                onChange={e => setScheduleItemsValue(index, 'week_day', e.target.value)}
-                                options={[
-                                    {value: '0', label: 'Domingo'},
-                                    {value: '1', label: 'Segunda-feira'},
-                                    {value: '2', label: 'Terça-feira'},
-                                    {value: '3', label: 'Quarta-feira'},
-                                    {value: '4', label: 'Quinta-feira'},
-                                    {value: '5', label: 'Sexta-feira'},
-                                    {value: '6', label: 'Sabado'}
-                                ]}
-                            />
+                            <div className="items">
 
-                            <Input 
-                                name="from" 
-                                label="Das" 
-                                type="time"
-                                value={schedule.from}
-                                onChange={e => setScheduleItemsValue(index, 'from', e.target.value)}
-                            />
+                                <Select 
+                                    label="Dia da semana" 
+                                    name="week_day"
+                                    value={schedule.week_day}
+                                    onChange={e => setScheduleItemsValue(index, 'week_day', e.target.value)}
+                                    options={[
+                                        {value: '0', label: 'Domingo'},
+                                        {value: '1', label: 'Segunda-feira'},
+                                        {value: '2', label: 'Terça-feira'},
+                                        {value: '3', label: 'Quarta-feira'},
+                                        {value: '4', label: 'Quinta-feira'},
+                                        {value: '5', label: 'Sexta-feira'},
+                                        {value: '6', label: 'Sabado'}
+                                    ]}
+                                />
 
-                            <Input 
-                                name="to" 
-                                label="Até" 
-                                type="time"
-                                value={schedule.to}
-                                onChange={e => setScheduleItemsValue(index, 'to', e.target.value)}
+                                <Input 
+                                    name="from" 
+                                    label="Das" 
+                                    type="time"
+                                    value={schedule.from}
+                                    onChange={e => setScheduleItemsValue(index, 'from', e.target.value)}
+                                />
 
-                            />
+                                <Input 
+                                    name="to" 
+                                    label="Até" 
+                                    type="time"
+                                    value={schedule.to}
+                                    onChange={e => setScheduleItemsValue(index, 'to', e.target.value)}
+
+                                />
+
+                                <button className="removeArea">x</button>
+                            </div>
                         </div>
                     ))}
 
-                    <footer id="buttons-container">
-                        <p>
+                    <Footer>
+                        <div id="aviso">
                             <img src={warningIcon} alt="warning icon"/>
-                            Importante! <br/>
-                            Preencha todos os dados
-                        </p>
+                            <p>
+                                <span> Importante! </span><br/>
+                                Preencha todos os dados
+                            </p>
+                        </div>
 
                         <button className="give-classes" type="submit">
                             Salvar cadastro
                         </button>
-                    </footer>
-                </fieldset>
+                    </Footer>
+                </Fieldset>
                 </form>
-            </main>
-        </div>
+            </Main>
+        </PageTeacherForm>
     )
 }
 

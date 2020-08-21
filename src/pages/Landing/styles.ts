@@ -56,10 +56,26 @@ export const HeaderContent = styled.div`
 
         }
         
-        #powerOf{
+        #userAvatar{
             width: 6rem; 
             height: 6rem; 
             border-radius: 3rem;
+        }
+
+        @media (max-width: 700px) {
+            width: 100%;
+            padding: 2rem;
+
+            #userAvatar{
+                width: 3rem; 
+                height: 3rem; 
+                border-radius: 1.5rem;
+            }
+
+            button{
+                width: 4rem;
+                height: 4rem;
+            }
         }
     }
 
@@ -70,8 +86,39 @@ export const HeaderContent = styled.div`
             font-size: 3rem;
             max-width: 30rem;
         }
+
+        @media (max-width: 700px) {
+            display: grid;
+            grid-template-row: 1fr;
+            justify-content: center;
+            align-items:center;
+            text-align: center;
+
+            .logo-container{
+                margin-top: -4rem;                
+                width: 100%;
+
+                h2{
+                    font-size: 3rem;
+                    margin-bottom: 4rem;
+                }
+            }
+
+            img{ 
+                width: 30rem;
+            }
+        }
     }
 
+    a{
+        text-decoration: none;
+        color: #D4C2FF;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 30px;
+    }
 `
 
 export const UserInfo = styled.div`
@@ -86,12 +133,13 @@ export const UserInfo = styled.div`
 `
 
 export const Content = styled.div`
-    display: grid;
-    grid-template-columns: 3fr auto auto auto;
+    display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    
     min-width: 60%;
     margin:auto;
-    justify-content: space-between;
 
     .buttons-container {
         display: flex;
@@ -143,66 +191,59 @@ export const Content = styled.div`
             margin-right: 2.4rem;
         }
     }
-    
-    .total-connections{
-        margin-right: 4rem;
-        font-size: 1.4rem;
-        max-width: 15rem;
 
-        img{
-            margin-left: 0.8rem;
+    .text-container{
+        margin-right: 3rem;
+        width: 70rem;
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+        justify-content: space-between;
+
+        .total-connections{
+            text-align: end;
+            width: 20rem;
+            margin-left: auto;
+            img{
+                margin-left: 1rem;
+            }
+        }
+    }
+    
+
+
+    @media (max-width: 700px) {
+        flex-direction: column;
+        max-width: 20rem;
+
+        .text-container{
+            margin:auto;
+            text-align: center;
+            width: 20rem;
+            display: flex;
+            flex-direction: column;
+            align-items:center;
+            
+            span {
+                margin-top: 3rem;
+            }
+
+            .total-connections{
+                text-align: center;
+            }
         }
 
+        .buttons-container{
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+
+            a{
+                margin-bottom: 2rem;
+            }
+        }
     }
     
 `
-
-
-
-
-
-// @media (min-width: 1100px) {
-//     #page-landing-content{
-//         max-width: 1100px;
-
-//         display: grid;
-//         grid-template-rows: 350px 1fr;
-//         grid-template-columns: 2fr 1fr 1fr;
-//         grid-template-areas: "logo hero hero" "buttons buttons total"; 
-//     }
-
-//     .logo-container{
-//         grid-area: logo;
-//         align-self:  center;
-//         text-align: left;
-//         margin: 0;
-//     }
-
-//     .logo-container h2{
-//         text-align: initial;
-//         font-size: 3.6rem;
-//     }
-
-//     .logo-container img{
-//         height: 100%;
-//     }
-
-//     .hero-image{
-//         grid-area: hero;
-//         justify-self: end;
-//     }
-    
-//     .buttons-container{
-//         justify-content: flex-start;
-//         grid-area: buttons;
-//     }
-
-//     .buttons-container a{
-//         font-size: 2.4rem;
-//     }
-
-//     .total-connections{
-//         grid-area: total;
-//         justify-self: end;
-//     } 
-// }
+// grid-template-columns: 3fr auto auto auto;

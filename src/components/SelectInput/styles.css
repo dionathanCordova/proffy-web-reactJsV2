@@ -21,6 +21,8 @@
     outline: 0;
     padding: 0 1.6rem;
     font: 1.6rem Arthivo;
+    color: #6A6180;
+    font: 500 1.6rem Poppins;
 }
 
 .select-block:focus-within::after {

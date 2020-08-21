@@ -3,31 +3,41 @@ import { Link } from 'react-router-dom';
 import logoImg from '../../assets/images/logo.svg';
 import backIcon from '../../assets/images/icons/back.svg';
 
-import './styles.css';
+import {
+    PageHeaderComp,
+    HeaderContent,
+    HeaderNavigation,
+    Content
+} from './styles';
 
 interface Propriedades {
-    title: string;
+    title?: string;
     description?: string;
+    route: string;
 }
 
 const PageHeader: React.FC<Propriedades> = (props) => {
     
     return (
-        <header className="page-header">
-            <div className="top-bar-container">
-                <Link to="/landing">
-                    <img src={backIcon} alt="voltar"/>
-                </Link>
-                <img src={logoImg} alt="proffy"/>
-            </div>
+        <PageHeaderComp>
+            <HeaderNavigation>
+                <div className="top-bar-container">
+                    <Link to="/landing">
+                        <img src={backIcon} alt="voltar"/>
+                    </Link>
+                    
+                    <p>{props.route}</p>
 
-            <div className="header-content">
-                <strong>{props.title}</strong>
-                {props.description && <p>{props.description}</p>}
+                    <img src={logoImg} alt="proffy"/>
+                </div>
+            </HeaderNavigation>
 
-                {props.children}
-            </div>
-        </header>
+            <HeaderContent>
+                <Content>
+                    {props.children}
+                </Content>                
+            </HeaderContent>
+        </PageHeaderComp>
     )
 }
 

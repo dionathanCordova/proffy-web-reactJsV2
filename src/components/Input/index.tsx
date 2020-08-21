@@ -10,8 +10,8 @@ interface InputHeader extends InputHTMLAttributes<HTMLInputElement> {
 const Input: React.FC<InputHeader> = ({label, type, name, ...rest}) => {
     return(
         <div className="input-block">
-            <label htmlFor={name}>{label}</label>
-            <input type={type} id={name} { ...rest} placeholder={type}/>
+            <label htmlFor={name}>{label}</label><br></br>
+            <input type={type} id={name} { ...rest} />
         </div>
     )
 }

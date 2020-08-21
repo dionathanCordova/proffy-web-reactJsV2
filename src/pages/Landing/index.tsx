@@ -7,7 +7,7 @@ import giveClassesIcon from '../../assets/images/icons/give-classes.svg';
 import publeHeartIcon from '../../assets/images/icons/purple-heart.svg';
 import powerof from '../../assets/images/Sair.png';
 
-import emptyAvatar from '../../assets/images/emptyAvatar.jpg';
+import emptyAvatar from '../../assets/images/emptyAvatar.png';
 
 import api from '../../service/api';
 
@@ -61,10 +61,12 @@ function Landing() {
                     
                     <div className="first-box">
                                         
-                        <UserInfo>
-                            <img  id="powerOf" src={userAvatar} alt="proffy"/>
-                            <p>{userName}</p>
-                        </UserInfo>
+                        <Link to="profile">
+                            <UserInfo>
+                                <img id="userAvatar" src={userAvatar} alt="proffy"/>
+                                <p>{userName}</p>
+                            </UserInfo>
+                        </Link>
 
                         <button onClick={getOut} className="signout">
                             <img src={powerof} alt="signout"/>
@@ -84,15 +86,17 @@ function Landing() {
             
             <Content>
 
-                <span className="welcome">
-                    Seja bem-vindo. <br/>
-                    <b>O que deseja fazer?</b>
-                </span>
+                <div className="text-container">
+                    <span className="welcome">
+                        Seja bem-vindo. <br/>
+                        <b>O que deseja fazer?</b>
+                    </span>
 
-                <span className="total-connections">
-                    Total de {totalConnections > 1 ? totalConnections + ' conexões ' : totalConnections + ' conexão' } já realizada(s) 
-                    <img src={publeHeartIcon} alt="coração roxo"/>
-                </span>
+                    <span className="total-connections">
+                        Total de {totalConnections > 1 ? totalConnections + ' conexões ' : totalConnections + ' conexão' } já realizada(s) 
+                        <img src={publeHeartIcon} alt="coração roxo"/>
+                    </span>
+                </div>
 
                 <div className="buttons-container">
                     <Link to="/study" className="study">
