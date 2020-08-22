@@ -57,13 +57,13 @@ function Landing() {
     return (
         <Container>
             <Header>
-                <HeaderContent>
+                <HeaderContent image={userAvatar}>
                     
                     <div className="first-box">
                                         
                         <Link to="profile">
                             <UserInfo>
-                                <img id="userAvatar" src={userAvatar} alt="proffy"/>
+                                <div id="userAvatar"></div>
                                 <p>{userName}</p>
                             </UserInfo>
                         </Link>

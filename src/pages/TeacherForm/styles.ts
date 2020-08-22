@@ -81,20 +81,19 @@ export const Fieldset = styled.fieldset`
         position: relative;
 
         .removeArea{
+            text-align:center;
             position: absolute;
             color: #E33D3D;
             font-family: Archivo;
             font-size: 1.4rem;
-            padding-left: 0.6rem;
-            padding-right: 0.6rem;
-            padding-top: 0.4rem;
-            padding-bottom: 0.4rem;
-            top: calc(0rem);
-            left: calc(96.5%);
+            top: calc(-0.5rem);
+            padding: 0.7rem 1rem;
+            left: calc(96%);
             font-weight: 600;
             cursor: pointer;
             background: #fff;
             border: 1px solid #ccc;
+            border-radius: 0.8rem;
         }
     }
 

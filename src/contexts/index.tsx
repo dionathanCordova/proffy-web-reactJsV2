@@ -18,8 +18,7 @@ interface SignedResult {
 interface ResponseSignInUser {
     user: UserProps;
     token: string;
-    rememberMe: boolean;
-    rememberPassword: string;
+    rememberMe: boolean | null;
 }
 
 interface AuthContextData {
@@ -32,8 +31,8 @@ interface AuthContextData {
         remember: boolean
     ): Promise<SignedResult>;
     signOut(): void;
+    updateUser(user: UserProps): void;
     remember: boolean;
-    rememberPassword: string | null;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -43,14 +42,13 @@ export const AuthProvider: React.FC = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [signed, setSigned] = useState(false);
 
-    const [data, setData] = useState(() => {
+    const [data, setData] = useState<ResponseSignInUser>(() => {
         const storegedUser = localStorage.getItem('@AuthProffy:user');
         const storageToken = localStorage.getItem('@AuthProffy:token');
-        const rememberMe = localStorage.getItem('@AuthProffy:remember');
-        const rememberPassword = localStorage.getItem('@AuthProffy:password');
+        const remember = (localStorage.getItem('@AuthProffy:remember')) ? true : false;
 
         if(storegedUser && storageToken) {
-            return { user: JSON.parse(storegedUser), storageToken, rememberMe, rememberPassword};
+            return { user: JSON.parse(storegedUser), token: storageToken, rememberMe: remember};
         }
 
         return {} as ResponseSignInUser;
@@ -77,7 +75,7 @@ export const AuthProvider: React.FC = ({ children }) => {
             
             setUser(user);
             setSigned(true);
-            setData({user, token, rememberMe, rememberPassword: password})
+            setData({user, token, rememberMe})
 
             return {status : true};
         }else{
@@ -95,11 +93,22 @@ export const AuthProvider: React.FC = ({ children }) => {
         localStorage.removeItem("@AuthProffy:token");
 
         setUser({} as UserProps);
-        setSigned(false);
+        setSigned(false);localStorage.setItem("@AuthProffy:user", JSON.stringify(user));
         setData({} as ResponseSignInUser);
 
         return {signed: false}
     }
+
+    const updateUser = useCallback((user: UserProps) => {
+        localStorage.setItem("@AuthProffy:user", JSON.stringify(user));
+
+        setData({
+            token: data.token,
+            user,
+            rememberMe: data.rememberMe
+        });
+
+    }, [data.rememberMe, data.token])
 
     return (
         <AuthContext.Provider value={{ 
@@ -108,8 +117,8 @@ export const AuthProvider: React.FC = ({ children }) => {
             loading, 
             signIn, 
             signOut,
+            updateUser,
             remember: !!data.rememberMe,
-            rememberPassword: data.rememberPassword
         }}>
             {children}
         </AuthContext.Provider>

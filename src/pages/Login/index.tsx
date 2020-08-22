@@ -28,7 +28,7 @@ const Login: React.FC = () => {
     const [ disabled, setDisabled ] = useState(true);
     const [ togglePass, setTogglePass ] = useState(false); 
 
-    const { signIn, signed, signOut, remember, user, rememberPassword } = useContext(AuthContext);
+    const { signIn, signed, signOut, remember, user } = useContext(AuthContext);
     const history = useHistory();
 
     function handleRememberMe() {

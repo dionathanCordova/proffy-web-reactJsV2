@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useContext, useEffect } from 'react';
+import React, { useState, FormEvent, useContext, useEffect, useCallback, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import PageHeader from '../../components/PageHeader';
@@ -25,7 +25,7 @@ import AuthContext from '../../contexts';
 function TeacherForm() {
     const history = useHistory();
 
-    const { signed, user } = useContext(AuthContext);
+    const { signed, user, updateUser } = useContext(AuthContext);
 
     const [ name, setName ] = useState('');
     const [ avatar, setAvatar ] = useState('');
@@ -35,7 +35,7 @@ function TeacherForm() {
     const [ cost, setCost ] = useState('');
 
     const [ scheduleItems, setScheduleItems ] = useState( [
-        {week_day: 0, from: '', to: ''},
+        {id: 0, week_day: 0, from: '', to: ''},
     ]);
 
     useEffect(() => {
@@ -45,15 +45,19 @@ function TeacherForm() {
 
         setAvatar(user.avatar !==  null ? user.avatar : emptyAvatar);
         setName(user.name);
-        // setAvatar('https://avatars3.githubusercontent.com/u/17915601?s=460&u=96ecb2b2408d0785ccdf6d1a364c60ef54b59ae5&v=4');
-        console.log(avatar);
 
     }, [avatar, history, signed, user]);
 
     function addNewSchedule() {
-        console.log(scheduleItems);
-        const newSchedule = {week_day: 0, from: '', to: ''};
+        let len = scheduleItems.length + 1;
+        const newSchedule = {id: len, week_day: 0, from: '', to: ''};
         setScheduleItems([...scheduleItems,  newSchedule]);
+    }
+
+    function removeSchedule(index: number) {
+        if(scheduleItems.length > 1) {
+            setScheduleItems(scheduleItems.filter(sched => sched.id !== index));
+        }
     }
 
     function setScheduleItemsValue(position: number, field: string, value: string ) {
@@ -67,6 +71,19 @@ function TeacherForm() {
 
         setScheduleItems(updateSchedule)
     }
+
+    const handleUploadAvatar = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+        if(e.target.files) {
+            const avatar = e.target.files[0];
+            const formData = new FormData();
+            formData.append('file', avatar);
+
+            api.patch('uploadImages', formData, { headers: {userId : Number(user.id)}}).then(response => {
+                const userUpdated = response.data.user[0];
+                updateUser(userUpdated);
+            })
+        }
+    }, [updateUser, user.id])
 
     function handleCreateClass(e: FormEvent) {
         e.preventDefault();
@@ -112,7 +129,7 @@ function TeacherForm() {
                             <label className="new-button" htmlFor="upload">
                                 <p>{name}</p>
                             </label>
-                            <input id="upload" type="file" /> 
+                            <input id="upload" type="file" onChange={handleUploadAvatar} /> 
                         </CustomUpload>
 
                         <Input 
@@ -208,7 +225,7 @@ function TeacherForm() {
 
                                 />
 
-                                <button className="removeArea">x</button>
+                                <button className="removeArea" type="button" onClick={() => removeSchedule(schedule.id)}>x</button>
                             </div>
                         </div>
                     ))}

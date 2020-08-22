@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
+interface CustomProps {
+    image: string;
+}
+
 export const Container = styled.div`
     width: 100vw;
     height: 100%;
@@ -17,7 +21,7 @@ export const Header = styled.div`
     align-items: center;
 `
 
-export const HeaderContent = styled.div`
+export const HeaderContent = styled.div<CustomProps>`
     display: flex;
     flex-direction: column;
 
@@ -55,12 +59,17 @@ export const HeaderContent = styled.div`
             }
 
         }
+
         
         #userAvatar{
+            cursor: pointer;
+            background: url(${(p: CustomProps) => p.image}) no-repeat center;
+            background-size: cover;
             width: 6rem; 
             height: 6rem; 
             border-radius: 3rem;
         }
+        
 
         @media (max-width: 700px) {
             width: 100%;

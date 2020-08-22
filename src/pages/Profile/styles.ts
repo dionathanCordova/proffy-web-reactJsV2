@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 import headerBgProfile from '../../assets/images/Background.svg';
 
+interface CustomProps {
+    image: string;
+}
+
 export const Container = styled.div`
     width: 100%;
     height: 100%;
@@ -50,7 +54,7 @@ export const HeaderNavigation = styled.div`
     }
 `
 
-export const HeaderContent = styled.div`
+export const HeaderContent = styled.div<CustomProps>`
     background: var(--color-primary) url(${headerBgProfile}) no-repeat center;
     background-size: 130rem;
     width: 100%;
@@ -61,7 +65,11 @@ export const HeaderContent = styled.div`
     text-align: center;
     
     #userAvatar{
-        margin-top: 12rem;
+        margin-top: 10rem;
+        display: inline-block;
+        cursor: pointer;
+        background: url(${(p: CustomProps) => p.image}) no-repeat center;
+        background-size: cover;
         width: 20rem; 
         height: 20rem; 
         border-radius: 10rem;

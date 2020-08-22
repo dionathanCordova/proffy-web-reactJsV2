@@ -26,7 +26,6 @@ import { FiUserX } from 'react-icons/fi';
 
 const Profile: React.FC = () => {
     const [ userName, setUsername ] = useState('');
-    const [ userAvatar, setUserAvatar ] = useState('');
 
     const [ name, setName ] = useState('');
     const [ avatar, setAvatar ] = useState('');
@@ -53,7 +52,7 @@ const Profile: React.FC = () => {
         }
 
         setUsername(user.name);
-        setUserAvatar(user.avatar !== null ? user.avatar : emptyAvatar);
+        setAvatar(user.avatar !== null ? user.avatar : emptyAvatar);
 
         console.log(user);
     }, [history, signed, user, userName]);
@@ -110,8 +109,8 @@ const Profile: React.FC = () => {
                     </div>
                 </HeaderNavigation>
                 
-                <HeaderContent>
-                    <img id="userAvatar" src={userAvatar} alt="proffy"/>
+                <HeaderContent image={avatar}>
+                    <div id="userAvatar"></div>
                     <h2>Dionathan Cordova</h2>
                     <p>Química</p>
                 </HeaderContent>
